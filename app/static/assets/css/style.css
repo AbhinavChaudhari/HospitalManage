@@ -1,0 +1,16 @@
+.bg-FFFFFF {
+    background-color:#FFFFFF !important;
+    box-shadow: none;
+}
+
+.hovereff  :hover {
+    background-color: #944FE0 !important;  
+    color: #FFFFFF !important;
+}
+
+.btn-outline-success {
+    /* outline-color: #944FE0; */
+    color: #944FE0 !important;
+  
+    border-color: #944FE0 !important;
+}

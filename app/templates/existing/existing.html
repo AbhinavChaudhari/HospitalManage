@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block mainbody %}
+
+      <div class="container">
+        <div class="row ">
+           <div class="card ">
+                <div class="col-lg-10 text-center mx-auto">
+                    <h3>Existing Patient</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card py-3">
+                <form action="" method="post" >  {% csrf_token %}
+                    <div class="row mx-3">
+                        <div class="col-lg-4 my-2 ">
+                        <label for="name"><strong>Name :-</strong></label>
+                        <input type="text " name="name" class="form-control ">
+                     </div>
+                      <div class="col-lg-4 my-2">
+                        <label for="name"><strong>Id :-</strong></label>
+                        <input type="text" name="id" class="form-control">
+                     </div>
+                      <div class="col-lg-4 my-2">
+                        <label for="name"><strong>Moblie No :-</strong></label>
+                        <input type="text" name="mobileNo" class="form-control">
+                     </div>
+                    </div>
+                   <div class="row">
+                     <button type="submit" name="searchbtn" class="btn btn-md btn-outline-success mx-auto mt-2">Search</button>
+                   </div>
+                </form>
+            </div>
+        </div>
+
+        {% if ptn %}
+        <div class="row">
+           <div class="card">
+              <div class="  mx-3">
+                    <table class="table bordered" id="patientdata">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Mobile No
+                        </th>
+                        <th>
+                          Email
+                        </th>
+                        <th>
+                          Refernced By
+                        </th>
+                        <th>
+                          Total
+                        </th>
+                         <th>
+                          Option
+                        </th>
+                      </thead>
+                      <tbody>
+                      {% for i in ptn %}
+                        <tr>
+                          <td>
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{i.name}}
+                          </td>
+                          <td>
+                            {{i.mobileNo}}
+                          </td>
+                          <td>
+                            {{i.email}}
+                          </td>
+                          <td >
+                           {{i.referedBy}}
+                          </td>
+                          <td >
+                           {{i.total}}
+                          </td>
+                          <td >
+                           <a class="btn btn-primary" href="{% url 'viewPatient' i.id %}" role="button">View</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  
+           </div>
+        </div>{% endif %}
+
+    </div>
+
+    
+
+{% endblock mainbody %}

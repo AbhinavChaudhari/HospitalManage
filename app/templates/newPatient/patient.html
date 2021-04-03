@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mainbody %}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+                 <div class=" ">
+                 
+                   <div class="form-inline my-2 my-lg-0 ">
+                   <a class="btn  btn-outline-success" href="{% url 'newPatient' %}" role="button">New Patient</a>
+                    <input class="form-control mr-sm-2 ml-auto" id="srcbtn" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+                  </div>
+                 </div>
+              <div class="card">
+                <div class="card-header card-header-primary ">
+                  <h4 class="card-title d-inline "> Todays Patient List </h4>
+                
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" id="patientdata">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Mobile No
+                        </th>
+                        <th>
+                          Email
+                        </th>
+                        <th>
+                          Refernced By
+                        </th>
+                        <th>
+                          Total
+                        </th>
+                         <th>
+                          Option
+                        </th>
+                      </thead>
+                      <tbody>
+                      {% for i in ptn %}
+                        <tr>
+                          <td>
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{i.name}}
+                          </td>
+                          <td>
+                            {{i.mobileNo}}
+                          </td>
+                          <td>
+                            {{i.email}}
+                          </td>
+                          <td >
+                           {{i.referedBy}}
+                          </td>
+                          <td >
+                           {{i.total}}
+                          </td>
+                          <td >
+                           <a class="btn btn-primary" href="{% url 'viewPatient' i.id %}" role="button">View</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>{% endblock mainbody %}
+     
+    </div>
+  </div>
+
+
+  
+  </div>
+    {% block tablescript %}
+   
+    <script>
+    $(document).ready(function(){
+      $("#srcbtn").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#patientdata tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>
+  
+    {% endblock tablescript %}
+  
+</body>
+
+</html>

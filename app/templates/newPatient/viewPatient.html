@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% load static %} {% block mainbody %}
+
+<div class="row">
+  <div class="col-md-10 mx-auto">
+    <div class="card py-3 px-3">
+      <form method="post">{% csrf_token %}
+        <div class="mt-3">
+          <label for="username"><strong>Name Of Patient :-</strong></label>
+          <input type="text" disabled class="form-control" value="{{p.name}}" name="name" placeholder="Enter name Of Patient" />
+        </div>
+
+        <div class="mt-3">
+          <label for="adrs"><strong>Address :-</strong></label>
+          <input type="text" disabled class="form-control " value="{{p.adrs}}" name="adrs" placeholder="Enter Address" />
+        </div>
+
+        <div class="row ">
+
+          <div class="col-md-6 mt-3">
+            <label for="email"><strong>Email Id :-</strong></label>
+            <input type="email" disabled class="form-control " value="{{p.email}}" name="email" placeholder="Enter Email" />
+          </div>
+
+          <div class=" col-md-6 mt-3">
+            <label for="adrs"><strong>Mobile No :-</strong></label>
+            <input type="mobileno" disabled class="form-control " value="{{p.mobileNo}}" name="mobileNo" placeholder="Enter Mobile No" />
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <label for="adrs"><strong>Refered By :-</strong></label>
+           <input type="text" disabled class="form-control " name="remark" placeholder="Enter remark" value="{{p.referedBy}}"/>
+        </div>
+
+        <div class="mt-3">
+          <label for="adrs"><strong>Remark :-</strong></label>
+          <input type="text" disabled class="form-control " name="remark" placeholder="Enter remark" value="{{p.remark}}"/>
+        </div>
+
+        <br>
+        <br>
+        <div class="row ">
+            {% for i in t %}
+          <div class="col-md-10 mt-1 form-inline mx-auto ">
+            <label for="" class=" col-1"><b>{{forloop.counter}})</b></label>
+            <input type="text" disabled class="form-control col-5" name="tname1" value="{{i.Test_name}}" placeholder="Enter Test Name" />
+            <input type="text" disabled class="form-control  col-2 mx-auto" name="tqty1" value="{{i.qty}}" placeholder="Enter Qty" />
+            <input type="text" disabled class="form-control  col-2" name="tprice1" placeholder="Enter Price" value="{{i.t_price}}" />
+          </div>
+        {% endfor %}
+      
+
+          <div class="col-md-10 mt-4 form-inline ">
+            <label for="" class=" ml-auto col-1"><b>Total :- </b></label>
+
+            <input type="text" disabled class="form-control mx-auto col-4" name="t_total" placeholder="Total" value="{{p.total}}"/>
+          </div>
+          <div class="col-md-11 mt-4 form-inline cashOnline">
+            <label for="" class=" ml-auto col-2"><b>Payment Method :- </b></label>
+
+             <input disabled type="text" class="form-control  col-3" name="cashOnline" value="{{p.method}}"  />
+          </div>
+          
+          <div class="col-md-11 mt-4 form-inline ">
+            <label for="" class=" ml-auto col-2"><b>Transaction Id :- </b></label>
+
+            <input type="text" disabled class="form-control  col-3" name="TrId" value="{{p.trId}}" placeholder="Transaction Id" />
+          </div>
+
+        </div>
+
+
+       
+          <div class="col-md-12  mt-5">
+            <div class="form-inline ">
+              <a class="btn btn-primary" href="{% url 'patient' %}" role="button">Back</a>
+            </div>
+          </div>
+       
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock mainbody %}
