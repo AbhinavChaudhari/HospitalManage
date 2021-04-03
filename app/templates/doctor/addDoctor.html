@@ -2,5 +2,37 @@
 
 {% load static %}
 {% block mainbody %}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="card text-center ">
+            <h3>Add Doctor</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card py-4 px-2">
+           <form action="" method="post">   {% csrf_token %}
+            <div class="mx-3 mt-3">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="mx-3 mt-3">
+                <label for="name">Email</label>
+                <input type="email" name="email" class="form-control">
+            </div>
+            <div class="mx-3 mt-3">
+                <label for="name">Mobile No</label>
+                <input type="text" name="mobileNo" class="form-control">
+            </div>
+            <div class="mx-auto text-center mt-5">
+                <button type="submit" name="SavePatient" class="btn btn-outline-success ">Add</button>
+            </div>
+
+           </form>
+            
+        </div>
+    </div>
+</div>
 
 {% endblock mainbody %}

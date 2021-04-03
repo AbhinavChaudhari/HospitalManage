@@ -7,4 +7,6 @@ urlpatterns = [
     path('newPatient/',newPatient,name="newPatient"),
     path('viewPatient/<int:id>',viewPatient,name="viewPatient"),
     path('existingPatient/',existingPatient,name="existingPatient"),
+
+    path('addDoctor/',addDoctor,name="addDoctor"),
 ]

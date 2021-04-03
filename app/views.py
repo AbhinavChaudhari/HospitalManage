@@ -2,16 +2,18 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.db.models import Q
 import datetime
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def dashboard(request):
     return render(request, 'dashboard/dashboard.html',{})
 
-
+@login_required
 def patient(request):
     ptn = Patient.objects.filter(date=datetime.datetime.today()).order_by("-id")
     return render(request, 'newPatient/patient.html',{"ptn":ptn})
-
+@login_required
 def newPatient(request):  
     if request.method == "POST":
         if "SavePatient" in request.POST:
@@ -41,11 +43,13 @@ def newPatient(request):
     dc = Doctor.objects.all()
     return render(request, 'newPatient/newPatient.html',{'dc':dc})
 
+@login_required
 def viewPatient(request,id):
     p = Patient.objects.get(id=id)
     t = Tests.objects.filter(Patient=p)
     return render(request,"newPatient/viewPatient.html",{"p":p,"t":t})
 
+@login_required
 def existingPatient(request):
     if request.method =="POST":
         if "searchbtn" in request.POST :
@@ -55,3 +59,17 @@ def existingPatient(request):
                 return render(request, 'existing/existing.html',{"ptn":ptn})
             
     return render(request, 'existing/existing.html')
+
+@login_required
+def addDoctor(request):
+    if request.method =="POST":
+        user = request.user
+        dc = Doctor()
+        dc.user = user
+        dc.name = request.POST['name']
+        dc.email = request.POST['email']
+        dc.mobileNo = request.POST['mobileNo']
+        dc.save()
+        return redirect("dashboard")
+    
+    return render(request,'doctor/addDoctor.html',{})

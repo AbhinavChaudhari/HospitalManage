@@ -32,6 +32,8 @@ class Tests(models.Model):
 class Doctor(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    email = models.EmailField(null=True,blank=True)
+    mobileNo = models.CharField(max_length=20,null=True,blank=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
